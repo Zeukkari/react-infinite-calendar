@@ -13,15 +13,12 @@
     "styles.css"
   ],
   "scripts": {
-    "build": "npm run clean && nwb build-react-component --no-vendor",
-    "clean": "nwb clean-module && nwb clean-demo",
-    "start": "nwb serve-react-demo",
-    "storybook": "start-storybook -p 6006",
-    "test": "nwb test-react",
-    "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server",
+    "build": "npm run build-storybook",
+    "build-storybook": "build-storybook",
+    "deploy": "gh-pages -d storybook-static",
     "lint": "eslint --fix src/**/*.js",
-    "build-storybook": "build-storybook"
+    "start": "npm run storybook",
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
@@ -50,6 +47,7 @@
     "@storybook/react": "^5.2.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
+    "gh-pages": "^2.1.1",
     "node-sass": "^4.12.0",
     "postcss-inline-svg": "^4.1.0",
     "postcss-loader": "^3.0.0",
