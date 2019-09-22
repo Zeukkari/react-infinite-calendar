@@ -22,9 +22,9 @@ export default class DefaultCalendar extends Component {
       ? this.props.selected
       : new Date(),
   };
-  componentWillReceiveProps({selected}) {
+  componentDidUpdate({selected}, prevState) {
     if (selected !== this.props.selected) {
-      this.setState({selected});
+      this.setState({...prevState, selected});
     }
   }
   handleSelect = (selected) => {

@@ -69,15 +69,14 @@ export default class MonthList extends Component {
   componentDidMount() {
     this.scrollEl = this.VirtualList.rootNode;
   }
-
-  componentWillReceiveProps({scrollDate}) {
+  componentDidUpdate({scrollDate}, prevState) {
     if (scrollDate !== this.props.scrollDate) {
       this.setState({
+        ...prevState,
         scrollTop: this.getDateOffset(scrollDate),
       });
     }
   }
-
   getDateOffset(date) {
     const {min, rowHeight, locale: {weekStartsOn}, height} = this.props;
     const weeks = getWeek(startOfMonth(min), parse(date), weekStartsOn);

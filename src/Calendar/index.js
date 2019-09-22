@@ -119,15 +119,15 @@ export default class Calendar extends Component {
       this.node.focus();
     }
   }
-  componentWillUpdate(nextProps, nextState) {
+  componentDidUpdate(prevProps, prevState) {
     let {min, minDate, max, maxDate} = this.props;
 
-    if (nextProps.min !== min || nextProps.minDate !== minDate || nextProps.max !== max || nextProps.maxDate !== maxDate) {
-      this.updateYears(nextProps);
+    if (prevProps.min !== min || prevProps.minDate !== minDate || prevProps.max !== max || prevProps.maxDate !== maxDate) {
+      this.updateYears(prevProps);
     }
 
-    if (nextProps.display !== this.props.display) {
-      this.setState({display: nextProps.display});
+    if (prevProps.display !== this.props.display) {
+      this.setState({...prevState, display: prevProps.display});
     }
   }
   updateYears(props = this.props) {
