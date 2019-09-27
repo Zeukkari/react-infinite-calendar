@@ -5,7 +5,6 @@ import postcss from 'rollup-plugin-postcss';
 import filesize from 'rollup-plugin-filesize';
 import autoprefixer from 'autoprefixer';
 import localResolve from 'rollup-plugin-local-resolve';
-import graph from 'rollup-plugin-graph';
 import pkg from './package.json';
 
 const config = {
@@ -35,8 +34,7 @@ const config = {
     localResolve(),
     resolve(),
     commonjs(),
-    filesize(),
-    graph({prune: true})
+    filesize()
   ],
 };
 
