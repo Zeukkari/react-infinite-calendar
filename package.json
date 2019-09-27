@@ -16,6 +16,7 @@
     "build": "rollup -c",
     "build:storybook": "build-storybook",
     "deploy": "gh-pages -d storybook-static",
+    "graph": "rollup -c | dot -Tpng >graph.png",
     "lint": "eslint --fix src/**/*.js",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006"
@@ -29,7 +30,7 @@
     "prop-types": "^15.5.7",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-tiny-virtual-list": "^2.0.0",
+    "react-tiny-virtual-list": "^2.2.0",
     "recompose": "^0.30.0"
   },
   "peerDependencies": {},
@@ -56,9 +57,9 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-filesize": "^6.2.0",
+    "rollup-plugin-graph": "^2.0.0",
     "rollup-plugin-local-resolve": "^1.0.7",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.3",
     "sass-loader": "^8.0.0",
     "semantic-release": "^15.13.24",

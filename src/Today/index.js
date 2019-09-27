@@ -15,6 +15,8 @@ export default class Today extends PureComponent {
     todayLabel: PropTypes.string,
   };
 
+  _getRef = (instance) => { this.VirtualList = instance; }
+
   scrollToToday = () => {
     let {scrollToDate} = this.props;
 
@@ -35,7 +37,9 @@ export default class Today extends PureComponent {
           color: theme.floatingNav.color,
         }}
         onClick={this.scrollToToday}
-        ref="node"
+        ref={node => {
+          this.node = node;
+        }}
       >
         {todayLabel}
         <svg

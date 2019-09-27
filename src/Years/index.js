@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VirtualList from 'react-tiny-virtual-list';
 import classNames from 'classnames';
-import {emptyFn, getMonthsForYear} from '../utils';
+import { emptyFn, getMonthsForYear } from '../utils';
 import format from 'date-fns/format';
 import isAfter from 'date-fns/is_after';
 import isBefore from 'date-fns/is_before';
@@ -49,7 +49,7 @@ export default class Years extends Component {
   }
 
   renderMonths(year) {
-    const {locale: {locale}, selected, theme, today, min, max, minDate, maxDate} = this.props;
+    const { locale: { locale }, selected, theme, today, min, max, minDate, maxDate } = this.props;
     const months = getMonthsForYear(year, selected.getDate());
 
     return (
@@ -91,7 +91,7 @@ export default class Years extends Component {
               style={style}
               title={`Set date to ${format(date, 'MMMM Do, YYYY')}`}
             >
-              {format(date, 'MMM', {locale})}
+              {format(date, 'MMM', { locale })}
             </li>
           );
         })}
@@ -100,7 +100,7 @@ export default class Years extends Component {
   }
 
   render() {
-    const {height, selected, showMonths, theme, today, width} = this.props;
+    const { height, selected, showMonths, theme, today, width } = this.props;
     const currentYear = today.getFullYear();
     const years = this.props.years.slice(0, this.props.years.length);
     const selectedYearIndex = years.indexOf(selected.getFullYear());
@@ -116,10 +116,12 @@ export default class Years extends Component {
     return (
       <div
         className={styles.root}
-        style={{color: theme.selectionColor, height: height + 50}}
+        style={{ color: theme.selectionColor, height: height + 50 }}
       >
         <VirtualList
-          ref="List"
+          ref={node => {
+            this.node = node;
+          }}
           className={styles.list}
           width={width}
           height={containerHeight}
@@ -128,7 +130,7 @@ export default class Years extends Component {
           itemSize={(index) => heights[index]}
           scrollToIndex={selectedYearIndex !== -1 ? selectedYearIndex : null}
           scrollToAlignment='center'
-          renderItem={({index, style}) => {
+          renderItem={({ index, style }) => {
             const year = years[index];
             const isActive = index === selectedYearIndex;
 
@@ -157,7 +159,7 @@ export default class Years extends Component {
                   <span
                     style={
                       !showMonths && year === currentYear
-                        ? {borderColor: theme.todayColor}
+                        ? { borderColor: theme.todayColor }
                         : null
                     }
                   >
