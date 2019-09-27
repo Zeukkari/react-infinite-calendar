@@ -2,8 +2,6 @@
   "name": "@zeukkari/react-infinite-calendar",
   "version": "2.4.0",
   "description": "Infinite scrolling date-picker built with React, with localization, themes, keyboard support, and more.",
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.esm.js",
   "browser": "./dist/index.js",
   "files": [
     "dist",
@@ -16,7 +14,6 @@
     "build": "rollup -c",
     "build:storybook": "build-storybook",
     "deploy": "gh-pages -d storybook-static",
-    "graph": "rollup -c | dot -Tpng >graph.png",
     "lint": "eslint --fix src/**/*.js",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006"
