@@ -1,15 +1,14 @@
 {
-  "name": "demo-library-example",
-  "homepage": "https://.github.io/demo-library",
+  "name": "@zeukkari/react-infinite-calendar-example",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@zeukkari/react-infinite-calendar": "^2.4.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "^1.1.4",
-    "demo-library": "file:.."
+    "react-scripts": "^1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
