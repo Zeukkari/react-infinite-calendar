@@ -214,3 +214,137 @@ storiesOf('Calendar/Original/Events', module)
         console.info('onScroll() – Scroll top:', scrollTop)}
     />,
   ]);
+<<<<<<< HEAD
+=======
+
+const defaultTheme = {
+  floatingNav: {
+    background: 'rgba(105, 74, 228, 0.91)',
+    chevron: '#FFA726',
+    color: '#FFF',
+  },
+  headerColor: 'rgb(127, 95, 251)',
+  selectionColor: 'rgb(146, 118, 255)',
+  textColor: {
+    active: '#FFF',
+    default: '#333',
+  },
+  weekdayColor: 'rgb(146, 118, 255)',
+}
+
+const defaultLocale = {
+  blank: 'Ei valittua päivää',
+  headerFormat: 'dddd, D MMM',
+  locale: require('date-fns/locale/fi'),
+  todayLabel: {
+    long: "Tänään",
+    short: 'nyt',
+  },
+  weekdays: ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La'],
+  weekStartsOn: 1,
+}
+
+const onScroll = scrollTop => console.info('onScroll() – Scroll top:', scrollTop)
+const onSelect = date => alert(`You selected: ${format(date, 'ddd, MMM Do YYYY')}`)
+
+storiesOf('Calendar/TKP', module)
+  .add('Default', () => (
+    <InfiniteCalendar
+      theme={defaultTheme}
+      locale={defaultLocale}
+      onSelect={onSelect}
+    />
+  ))
+  .add('Lukittuja päiviä', () => (
+    <InfiniteCalendar
+      theme={defaultTheme}
+      locale={defaultLocale}
+      locale={defaultLocale}
+      onSelect={onSelect}
+      disabledDates={[-10, -5, -6, 5, 6, 7, 2].map(amount =>
+        addDays(today, amount))}
+    />
+  ))
+
+
+const testRows = [[1, 2, 3, 4, 5, 6, 7], [8, 9, 10, 11, 12, 13, 14], [15, 16, 17, 18, 19, 20, 21], [22, 23, 24, 25, 26, 27, 28], [29, 30, 31]]
+const myDay = new Date();
+
+storiesOf('Components/Day', module)
+  .add('Default', () => (
+    <Day
+      currentYear={2019}
+      date="019-09-29"
+      day={16}
+      isSelected={false}
+      isDisabled={false}
+      isToday={false}
+      locale={defaultLocale}
+      month={8}
+      monthShort="Sep"
+      theme={defaultTheme}
+      year="2019"
+    />
+  ))
+  .add('Selected', () => (
+    <Day
+      currentYear={2019}
+      date="019-09-29"
+      day={16}
+      isSelected={true}
+      isDisabled={false}
+      isToday={false}
+      locale={defaultLocale}
+      month={8}
+      monthShort="Sep"
+      theme={defaultTheme}
+      year="2019"
+    />
+  ))
+  .add('Disabled', () => (
+    <Day
+      currentYear={2019}
+      date="019-09-29"
+      day={16}
+      isSelected={false}
+      isDisabled={true}
+      isToday={false}
+      locale={defaultLocale}
+      month={8}
+      monthShort="Sep"
+      theme={defaultTheme}
+      year="2019"
+    />
+  ))
+  .add('isToday', () => (
+    <Day
+      currentYear={2019}
+      date="019-09-29"
+      day={16}
+      isSelected={false}
+      isDisabled={false}
+      isToday={true}
+      locale={defaultLocale}
+      month={8}
+      monthShort="Sep"
+      theme={defaultTheme}
+      year="2019"
+    />
+  ))
+
+storiesOf('Components/Month', module)
+  .add('Default', () => (
+    <Month
+      DayComponent={Day}
+      isScrolling={false}
+      locale={defaultLocale}
+      rows={testRows}
+      theme={defaultTheme}
+      today={myDay}
+      monthDate={myDay}
+      rowHeight={56}
+      selected="2019-09-29"
+      showOverlay={true}
+    />
+  ))
+>>>>>>> Month story

@@ -71,7 +71,7 @@ export default class Month extends PureComponent {
             monthShort={monthShort}
 						theme={theme}
             year={year}
-            {...passThrough.Day}
+            {...passThrough ? {...passThrough.Day} : undefined}
 					/>
 				);
 
