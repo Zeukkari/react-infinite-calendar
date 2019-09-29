@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys */
 import React from 'react';
-import { addDecorator, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import InfiniteCalendar, {
   Calendar,
   defaultMultipleDateInterpolation,
@@ -9,7 +9,6 @@ import InfiniteCalendar, {
   withMultipleDates,
   withRange,
 } from '../src';
-import styles from './stories.scss';
 
 // Date manipulation utils
 import addDays from 'date-fns/add_days';
@@ -18,9 +17,6 @@ import endOfMonth from 'date-fns/end_of_month';
 import format from 'date-fns/format';
 import isBefore from 'date-fns/is_before';
 import subMonths from 'date-fns/sub_months';
-
-const CenterDecorator = story => <div className={styles.center}>{story()}</div>;
-addDecorator(CenterDecorator);
 
 const today = new Date();
 
