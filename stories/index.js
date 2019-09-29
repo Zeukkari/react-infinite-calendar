@@ -10,6 +10,14 @@ import InfiniteCalendar, {
   withRange,
 } from '../src';
 
+import HeaderComponent from '../src/Header'
+import Day from '../src/Day'
+import Month from '../src/Month'
+import MonthList from '../src/MonthList'
+import Today from '../src/Today'
+import Weekdays from '../src/Weekdays'
+import Years from '../src/Years'
+
 // Date manipulation utils
 import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
@@ -20,7 +28,7 @@ import subMonths from 'date-fns/sub_months';
 
 const today = new Date();
 
-storiesOf('Basic settings', module)
+storiesOf('Calendar/Original/Default', module)
   .add('Default Configuration', () => <InfiniteCalendar />)
   .add('Initially Selected Date', () => <InfiniteCalendar selected={addDays(today, 5)} />)
   .add('Blank Initial State', () => <InfiniteCalendar selected={null} />)
@@ -48,7 +56,7 @@ storiesOf('Basic settings', module)
     <InfiniteCalendar disabledDays={[0, 6]} />
   ));
 
-storiesOf('Higher Order Components', module)
+storiesOf('Calendar/Original/Higher Order Components', module)
   .add('Range selection', () => (
     <InfiniteCalendar
       selected={{
@@ -74,7 +82,7 @@ storiesOf('Higher Order Components', module)
     return <InfiniteCalendar Component={withDateSelection(withKeyboardSupport(Calendar))} />;
   });
 
-storiesOf('Internationalization', module)
+storiesOf('Calendar/Original/Internationalization', module)
   .add('Locale', () => (
     <InfiniteCalendar
       locale={{
@@ -97,7 +105,7 @@ storiesOf('Internationalization', module)
     />
   ));
 
-storiesOf('Customization', module)
+storiesOf('Calendar/Original/Customization', module)
   .add('Theming', () => (
     <InfiniteCalendar
       theme={{
@@ -137,7 +145,7 @@ storiesOf('Customization', module)
     />
   ));
 
-storiesOf('Display Options', module)
+storiesOf('Calendar/Original/Display Options', module)
   .add('Landscape Layout', () => (
     <InfiniteCalendar
       displayOptions={{
@@ -191,7 +199,7 @@ storiesOf('Display Options', module)
     />
   ));
 
-storiesOf('Events', module)
+storiesOf('Calendar/Original/Events', module)
   .add('On Select', () => (
     <InfiniteCalendar
       onSelect={date =>
