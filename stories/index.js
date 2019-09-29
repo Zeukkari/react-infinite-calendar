@@ -10,7 +10,7 @@ import InfiniteCalendar, {
   withRange,
 } from '../src';
 
-import HeaderComponent from '../src/Header'
+import Header from '../src/Header'
 import Day from '../src/Day'
 import Month from '../src/Month'
 import MonthList from '../src/MonthList'
@@ -214,8 +214,6 @@ storiesOf('Calendar/Original/Events', module)
         console.info('onScroll() – Scroll top:', scrollTop)}
     />,
   ]);
-<<<<<<< HEAD
-=======
 
 const defaultTheme = {
   floatingNav: {
@@ -347,4 +345,23 @@ storiesOf('Components/Month', module)
       showOverlay={true}
     />
   ))
->>>>>>> Month story
+
+storiesOf('Components/Weekdays', module)
+  .add('Default', () => (
+    <Weekdays
+      weekdays={["Su", "Ma", "Ti", "Ke", "To", "Pe", "La"]}
+      weekStartsOn={1}
+      theme={defaultTheme}
+    />
+  ))
+
+storiesOf('Components/Header', module)
+  .add('Default', () => (
+    <Header
+      dateFormat="dddd, D MMM"
+      display="days"
+      locale={defaultLocale}
+      theme={defaultTheme}
+      selected="2019-09-29"
+    />
+  ))
