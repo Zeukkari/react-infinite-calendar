@@ -8,7 +8,7 @@ import InfiniteCalendar, {
   withKeyboardSupport,
   withMultipleDates,
   withRange,
-} from '../';
+} from '../src';
 import styles from './stories.scss';
 
 // Date manipulation utils
