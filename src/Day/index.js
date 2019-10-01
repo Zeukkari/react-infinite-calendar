@@ -66,22 +66,25 @@ export default class Day extends PureComponent {
       color = todayColor;
     }
 
+
+    let styling = classNames(styles.root, {
+      [styles.today]: isToday,
+      [styles.highlighted]: isHighlighted,
+      [styles.enabled]: !isDisabled,
+      [styles.disabled]: isDisabled,
+      [styles.selected]: isSelected
+    }, className)
+
     return (
       <li
         style={color ? {color} : null}
-        className={classNames(styles.root, {
-          [styles.today]: isToday,
-          [styles.highlighted]: isHighlighted,
-          [styles.selected]: isSelected,
-          [styles.disabled]: isDisabled,
-          [styles.enabled]: !isDisabled,
-        }, className)}
+        className={styling}
         onClick={this.handleClick}
         data-date={date}
         {...handlers}
       >
-        {day === 1 && <span className={styles.month}>{monthShort}</span>}
-        {isToday ? <span>{day}</span> : day}
+        {day === 1 && <span className={styling}>{monthShort}</span>}
+        {isToday ? <span className={styling}>{day}</span> : day}
         {day === 1 &&
           currentYear !== year &&
           <span className={styles.year}>{year}</span>}

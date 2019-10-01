@@ -17,7 +17,7 @@ export default class Weekdays extends PureComponent {
       <ul
         className={styles.root}
         style={{
-          backgroundColor: theme.weekdayColor,
+          backgroundColor: '#ed6930',
           color: theme.textColor.active,
           paddingRight: scrollbarSize,
         }}

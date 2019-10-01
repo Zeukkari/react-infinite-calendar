@@ -18,6 +18,8 @@ import Today from '../src/Today'
 import Weekdays from '../src/Weekdays'
 import Years from '../src/Years'
 
+import colors from '../src/_variables.scss'
+
 // Date manipulation utils
 import addDays from 'date-fns/add_days';
 import addMonths from 'date-fns/add_months';
@@ -219,13 +221,13 @@ const defaultTheme = {
   floatingNav: {
     background: 'rgba(105, 74, 228, 0.91)',
     chevron: '#FFA726',
-    color: '#FFF',
+    color: '#fff',
   },
-  headerColor: 'rgb(127, 95, 251)',
-  selectionColor: 'rgb(146, 118, 255)',
+  headerColor: '#ed6930',
+  selectionColor: 'ed6930',
   textColor: {
-    active: '#FFF',
-    default: '#333',
+    active: '#ed6930',
+    default: '#ed6930',
   },
   weekdayColor: 'rgb(146, 118, 255)',
 }
@@ -253,6 +255,20 @@ storiesOf('Calendar/TKP', module)
       onSelect={onSelect}
     />
   ))
+  .add('Landscape', () => (
+    <InfiniteCalendar
+      theme={defaultTheme}
+      locale={defaultLocale}
+      onSelect={onSelect}
+      displayOptions={{
+        layout: 'landscape',
+      }}
+      disabledDays={[6,7]}
+      width={'90%'}
+      height={window.innerHeight - 147}
+      rowHeight={70}
+    />
+  ))  
   .add('Lukittuja päiviä', () => (
     <InfiniteCalendar
       theme={defaultTheme}
