@@ -1,206 +1,262 @@
 @import "../variables";
 
-@mixin circle() {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: $rowHeight - 4px;
-  height: $rowHeight - 4px;
-  margin-top: -0.5 * ($rowHeight - 4px);
-  margin-left: -0.5 * ($rowHeight - 4px);
-  border-radius: 50%;
+@mixin circle {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $rowHeight - 4px;
+    height: $rowHeight - 4px;
+    margin-top: -0.5 * ($rowHeight - 4px);
+    margin-left: -0.5 * ($rowHeight - 4px);
+    border-radius: 50%;
 }
 
 .root {
-  display: inline-block;
-  box-sizing: border-box;
-  width: 1 / 7 * 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 1 / 7 * 100%;
+    list-style: none;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
 
-  list-style: none;
-
-  font-size: 16px;
-  text-align: center;
-
-  cursor: pointer;
-  user-select: none;
-
-  &.enabled {
-    &.highlighted, &:active, &:hover {
-      position: relative;
-      z-index: 1;
-
-      &:before {
-        @include circle();
-
-        background-color: $cellHoverBg;
-        z-index: -1;
-      }
-    }
-
-    &:hover:before {
-      opacity: 0.5;
-    }
-    &.highlighted:before, &:active:before {
-      opacity: 1;
-    }
-  }
-
-  &:first-child {
-      position: relative;
-  }
-
-  &.today {
-      position: relative;
-      z-index: 2;
-
-      > span {
-          color: $textColor;
-      }
-
-      &.disabled > span {
-          color: $textColorDisabled;
-      }
-
-      &:before {
-          @include circle();
-          box-shadow: inset 0 0 0 1px;
-          z-index: -1;
-      }
-
-      &.disabled:before {
-          box-shadow: inset 0 0 0 1px #BBB;
-      }
-  }
-  &.selected {
-    position: relative;
-
-    > .month, > .year {
-      display: none;
-    }
-
-    &:before {
-      display: none;
-    }
-
-    .selection {
-      @include circle();
-      line-height: $rowHeight;
-      z-index: 2;
-
-      .month {
-        top: 9px;
-      }
-      .day {
+    &.enabled {
         position: relative;
-        top: 5px;
+        z-index: 1;
 
-        font-weight: bold;
-        font-size: 18px;
-      }
+        &.highlighted,
+        &:active,
+        &:hover {
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                @include circle;
+
+                background-color: $cellHoverBg;
+                z-index: -1;
+            }
+        }
+
+        &:hover:before {
+            opacity: 0.5;
+        }
+
+        &.highlighted:before,
+        &:active:before {
+            opacity: 1;
+        }
     }
-  }
-  &.disabled {
-    color: $textColorDisabled;
-    cursor: not-allowed;
-  }
+
+    &:first-child {
+        position: relative;
+    }
+
+    &:nth-last-child(n-7) {
+        position: relative;
+    }
+
+    &.weekend {
+        background-color: rgb(232, 232, 232);
+    }
+
+    &.today {
+        position: relative;
+        z-index: 2;
+        text-decoration: underline;
+        color: #000;
+
+        > span {
+            color: #000;
+        }
+
+        &.disabled > span {
+            color: $textColorDisabled;
+        }
+
+        &.disabled:before {
+            box-shadow: inset 0 0 0 1px #bbb;
+        }
+    }
+
+    &.selected {
+        position: relative;
+
+        /* text-decoration: overline; */
+        color: white;
+
+        > .month,
+        > .year {
+            display: none;
+        }
+
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                @include circle;
+
+                background-color: $color-orange-phz;
+                z-index: -1;
+            }
+        }
+
+        &:hover:before {
+            opacity: 1;
+        }
+
+        &.highlighted:before,
+        &:active:before {
+            opacity: 1;
+        }
+
+        &:before {
+            @include circle;
+
+            background-color: $color-orange-phz;
+            z-index: -1;
+            opacity: 1;
+        }
+
+        .selection {
+            position: relative;
+            z-index: 2;
+
+            @include circle;
+
+            line-height: $rowHeight;
+            z-index: 2;
+
+            .month {
+                top: 9px;
+            }
+
+            .day {
+                position: relative;
+
+                /*top: 5px;*/
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+    }
+
+    &.disabled {
+        /*
+          background-color: grey;
+          */
+        color: rgb(0, 0, 0);
+        cursor: not-allowed;
+    }
 }
 
-.month, .year {
-  position: absolute;
-  left: 0;
-  right: 0;
-
-  font-size: 12px;
-  line-height: 12px;
-  text-transform: capitalize;
+.month,
+.year {
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size: 12px;
+    line-height: 12px;
+    text-transform: capitalize;
 }
 
 .month {
-  top: 5px;
+    top: 5px;
 }
 
 .year {
-  bottom: 5px;
+    bottom: 5px;
 }
 
 /*
  * Range selection styles
  */
 .range.selected {
-  &.start, &.end {
-    &:after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      width: 50%;
-      height: $rowHeight - 4px;
-      margin-top: -0.5 * ($rowHeight - 4px);
-      box-shadow: inset $rowHeight $rowHeight;
-    }
-  }
-
-  &.disabled {
-    .selection.selection {
-      background-color: #EEE !important;
-
-      .day, .month {
-        color: #AAA;
-        font-weight: 300;
-      }
-    }
-  }
-
-  &.start {
-    .selection {
-      border-top-left-radius: 50%;
-      border-bottom-left-radius: 50%;
+    &.start,
+    &.end {
+        &:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 50%;
+            height: $rowHeight - 4px;
+            margin-top: -0.5 * ($rowHeight - 4px);
+            box-shadow: inset $rowHeight $rowHeight;
+        }
     }
 
-    &:after {
-      right: 0;
+    &.disabled {
+        .selection.selection {
+            /*
+              background-color: #EEE !important;
+            */
+            .day,
+            .month {
+                color: rgb(0, 0, 0);
+                font-weight: 300;
+            }
+        }
     }
 
-    &.end:after {
-      display: none;
-    }
-  }
-  &.betweenRange {
-    .selection {
-      left: 0;
-      right: 0;
-      width: 100%;
-      margin-left: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 0;
-    }
-    .day {
-      top: 0;
-      font-size: 16px;
-    }
-    .month {
-      display: none;
-    }
-  }
-  &.end {
-    &:after {
-      left: 0;
+    &.start {
+        .selection {
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            background-color: rgb(0, 0, 0) !important;
+        }
+
+        &:after {
+            right: 0;
+        }
+
+        &.end:after {
+            display: none;
+        }
     }
 
-    .selection {
-      border-top-right-radius: 50%;
-      border-bottom-right-radius: 50%;
+    &.betweenRange {
+        .selection {
+            left: 0;
+            right: 0;
+            width: 100%;
+            margin-left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0;
+        }
 
-      color: inherit !important;
-      background-color: #FFF !important;
-      border: 2px solid;
-      box-sizing: border-box;
+        .day {
+            top: 0;
+            font-size: 16px;
+        }
 
-      .day {
-        top: 4px;
-      }
+        .month {
+            display: none;
+        }
     }
-  }
+
+    &.end {
+        &:after {
+            left: 0;
+        }
+
+        .selection {
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            color: inherit !important;
+            border: 2px solid;
+            box-sizing: border-box;
+
+            .day {
+                top: 4px;
+            }
+        }
+    }
 }

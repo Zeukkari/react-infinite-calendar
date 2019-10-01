@@ -1,6 +1,28 @@
+$color-dark-blue: rgb(13, 0, 250);
+$color-light-blue: rgb(108, 108, 228);
+$color-black: rgb(0, 0, 0);
+$color-white: rgb(255, 255, 255);
+$color-orange-phz: #ed6930;
+$color-darkorange: #9d390e;
+$color-grey: #999;
+$color-darkgrey: darkgrey;
+$color-lightgreen: lightgreen;
+
+$color-tkp-is-annual: #23d160;
+$color-tkp-is-nonpaid: #cca300;
+$color-tkp-is-parental: #3273dc;
+$color-tkp-is-parental-nonpaid: #20bbee;
+$color-tkp-is-other: #ff3860;
+
+$color-tkp-is-annual-light: #9fefbb;
+$color-tkp-is-nonpaid-light: #ffe066;
+$color-tkp-is-parental-light: #a8c4f0;
+$color-tkp-is-parental-nonpaid-light: #d0f0fb;
+$color-tkp-is-other-light: #ffd1da;
+
 $textColor: #3d3d3d;
 $textColorDisabled: #AAA;
 $rowHeight: 56px;
 $borderRadius: 3px;
-$borderColor: #E9E9E9;
+$borderColor: $color-orange-phz;
 $cellHoverBg: #EFEFEF;
