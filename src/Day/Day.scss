@@ -23,6 +23,9 @@
     user-select: none;
 
     &.enabled {
+        position: relative;
+        z-index: 1;
+
         &.highlighted,
         &:active,
         &:hover {
@@ -62,22 +65,15 @@
     &.today {
         position: relative;
         z-index: 2;
+        text-decoration: underline;
+        color: #000;
 
-        /*
         > span {
-            color: #EEE;
+            color: #000;
         }
-        */
 
         &.disabled > span {
             color: $textColorDisabled;
-        }
-
-        &:before {
-            @include circle;
-
-            box-shadow: inset 0 0 0 1px;
-            z-index: -1;
         }
 
         &.disabled:before {
@@ -88,16 +84,50 @@
     &.selected {
         position: relative;
 
+        /* text-decoration: overline; */
+        color: white;
+
         > .month,
         > .year {
             display: none;
         }
 
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+            position: relative;
+            z-index: 1;
+
+            &:before {
+                @include circle;
+
+                background-color: $color-orange-phz;
+                z-index: -1;
+            }
+        }
+
+        &:hover:before {
+            opacity: 1;
+        }
+
+        &.highlighted:before,
+        &:active:before {
+            opacity: 1;
+        }
+
         &:before {
-            display: none;
+            @include circle;
+
+            background-color: $color-orange-phz;
+            z-index: -1;
+            opacity: 1;
         }
 
         .selection {
+            position: relative;
+            z-index: 2;
+
             @include circle;
 
             line-height: $rowHeight;
@@ -109,7 +139,8 @@
 
             .day {
                 position: relative;
-                top: 5px;
+
+                /*top: 5px;*/
                 font-weight: bold;
                 font-size: 18px;
             }

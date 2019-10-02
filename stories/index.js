@@ -243,6 +243,7 @@ const defaultTheme = {
     active: "#ed6930",
     default: "#0"
   },
+  todayColor: "#0",
   weekdayColor: "rgb(146, 118, 255)"
 };
 
@@ -252,7 +253,7 @@ const defaultLocale = {
   locale: require("date-fns/locale/fi"),
   todayLabel: {
     long: "Tänään",
-    short: "nyt"
+    short: " "
   },
   weekdays: ["Su", "Ma", "Ti", "Ke", "To", "Pe", "La"],
   weekStartsOn: 1
@@ -276,10 +277,11 @@ storiesOf("Calendar/TKP", module)
       theme={defaultTheme}
       locale={defaultLocale}
       onSelect={onSelect}
+      selected="2019-10-03"
       displayOptions={{
         layout: "landscape"
       }}
-      disabledDays={[6, 7]}
+      disabledDays={[]}
       width={"90%"}
       height={window.innerHeight - 147}
       rowHeight={70}

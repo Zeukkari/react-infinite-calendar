@@ -81,6 +81,8 @@ export default class Day extends PureComponent {
       className
     );
 
+    console.log("styling: ", styling);
+
     return (
       <li
         style={color ? { color } : null}
@@ -90,11 +92,15 @@ export default class Day extends PureComponent {
         {...handlers}
       >
         {/*day === 1 && <span>{monthShort}</span>*/}
-        {isToday ? <span>{day}</span> : day}
+
         {day === 1 && currentYear !== year && (
           <span className={styles.year}>{year}</span>
         )}
+        {/*
+        {isToday ? <span>{day}</span> : day}
         {isSelected && this.renderSelection()}
+        */}
+        {day}
       </li>
     );
   }
