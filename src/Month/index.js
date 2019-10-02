@@ -32,7 +32,7 @@ export default class Month extends PureComponent {
     let day = 0;
     let isDisabled = false;
     let isToday = false;
-    let isViikonloppu = true;
+    let isWeekend = false;
     let date, days, dow, row;
 
     // Used for faster comparisons
@@ -51,14 +51,7 @@ export default class Month extends PureComponent {
 
         date = getDateString(year, month, day);
         isToday = date === _today;
-
-        const foo = isSunday(date);
-        const bar = isSaturday(date);
-
-        console.log("viikonloppu! ", foo, bar);
-        console.log("dow, date: ", dow, date);
-
-        isViikonloppu = foo || bar;
+        isWeekend = isSunday(date) || isSaturday(date);
 
         isDisabled =
           (minDate && date < _minDate) ||
@@ -70,7 +63,7 @@ export default class Month extends PureComponent {
             disabledDates.length &&
             disabledDates.indexOf(date) !== -1);
 
-        isViikonloppu = days[k] = (
+        isWeekend = days[k] = (
           <DayComponent
             key={`day-${day}`}
             currentYear={currentYear}
@@ -79,7 +72,7 @@ export default class Month extends PureComponent {
             selected={selected}
             isDisabled={isDisabled}
             isToday={isToday}
-            isViikonloppu={isViikonloppu}
+            isWeekend={isWeekend}
             locale={locale}
             month={month}
             monthShort={monthShort}
