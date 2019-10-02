@@ -1,64 +1,73 @@
 @import "../variables";
 
 .root {
-  position: absolute;
-  width: 100%;
+    position: absolute;
+    width: 100%;
 }
+
 .rows {
-  position: relative;
+    position: relative;
 }
 
 .row {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 
-  &.partial {
-    li:nth-of-type(-n + 7) {
-      box-shadow: inset 0px -2px blue;
-    }
-    li:last-of-type {
-      box-shadow: inset -2px -2px blue;
-    }
-  }
+    &:first-child {
+        text-align: right;
 
-  &:first-child {
-    text-align: right;
-    /*box-shadow: inset 2px 2px $borderColor;*/
-
-    li:nth-of-type(-n + 7) {
-      box-shadow: inset 0px 2px blue;
+        li {
+            box-shadow: 0 1px 0 $borderColor inset;
+        }
     }
-  }
+
+    &.partial {
+        &:first-child {
+            li {
+                &:first-child {
+                    box-shadow: 1px 1px 0 $borderColor inset;
+                }
+            }
+        }
+
+        &:last-of-type {
+            li:nth-last-child(-n+7) {
+                box-shadow: 0px -1px 0 $borderColor inset;
+                position: relative;
+                z-index: 1;
+            }
+        }
+    }
 }
 
 .label {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  font-size: 30px;
-  font-weight: 500;
-  z-index: 3;
-  pointer-events: none;
-  background-color: rgba(255, 255, 255, 0.6);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-
-  > span {
     position: absolute;
+    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    top: 0;
-    bottom: $rowHeight;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: capitalize;
-  }
+    margin: 0;
+    font-size: 30px;
+    font-weight: 500;
+    z-index: 3;
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 
-  &.partialFirstRow {
-    top: $rowHeight;
-  }
+    > span {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: $rowHeight;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: capitalize;
+    }
+
+    &.partialFirstRow {
+        top: $rowHeight;
+    }
 }
