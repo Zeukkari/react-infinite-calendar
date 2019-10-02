@@ -55,13 +55,19 @@
         position: relative;
     }
 
+    &.viikonloppu {
+        background-color: rgb(232, 232, 232);
+    }
+
     &.today {
         position: relative;
         z-index: 2;
 
+        /*
         > span {
             color: #EEE;
         }
+        */
 
         &.disabled > span {
             color: $textColorDisabled;
@@ -111,7 +117,9 @@
     }
 
     &.disabled {
-        background-color: grey;
+        /*
+          background-color: grey;
+          */
         color: rgb(0, 0, 0);
         cursor: not-allowed;
     }
@@ -154,8 +162,9 @@
 
     &.disabled {
         .selection.selection {
-            background-color: #EEE !important;
-
+            /*
+              background-color: #EEE !important;
+            */
             .day,
             .month {
                 color: rgb(0, 0, 0);

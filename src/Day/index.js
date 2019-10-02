@@ -52,6 +52,7 @@ export default class Day extends PureComponent {
       isHighlighted,
       isToday,
       isSelected,
+      isViikonloppu,
       monthShort,
       theme: { selectionColor, todayColor },
       year
@@ -74,7 +75,8 @@ export default class Day extends PureComponent {
         [styles.highlighted]: isHighlighted,
         [styles.enabled]: !isDisabled,
         [styles.disabled]: isDisabled,
-        [styles.selected]: isSelected
+        [styles.selected]: isSelected,
+        [styles.viikonloppu]: isViikonloppu
       },
       className
     );
