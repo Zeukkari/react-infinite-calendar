@@ -118,6 +118,7 @@ export default class MonthList extends Component {
 
   renderMonth = ({index, style}) => {
     let {
+      dayClassObj,
       dateClassObj,
       DayComponent,
       disabledDates,
@@ -143,6 +144,7 @@ export default class MonthList extends Component {
         key={key}
         selected={selected}
         dateClassObj={dateClassObj}
+        dayClassObj={dayClassObj}
         DayComponent={DayComponent}
         monthDate={date}
         disabledDates={disabledDates}

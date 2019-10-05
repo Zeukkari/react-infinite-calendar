@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import { getDateString } from "../utils";
-import { isSaturday, isSunday } from "date-fns";
+import { isSaturday, isSunday, getISODay } from "date-fns";
 import format from "date-fns/format";
 import getDay from "date-fns/get_day";
 import isSameYear from "date-fns/is_same_year";
@@ -10,6 +10,7 @@ import styles from "./Month.scss";
 export default class Month extends PureComponent {
   renderRows() {
     const {
+      dayClassObj,
       dateClassObj,
       DayComponent,
       disabledDates,
@@ -36,6 +37,12 @@ export default class Month extends PureComponent {
     let isWeekend = false;
     let date, days, dow, row;
 
+    /*
+    console.log("props: ", this.props)
+    console.log("dateClassObj: ", dateClassObj);
+    console.log("dayClassObj: ", dayClassObj);
+    */
+
     // Used for faster comparisons
     const _today = format(today, "YYYY-MM-DD");
     const _minDate = format(minDate, "YYYY-MM-DD");
@@ -54,6 +61,8 @@ export default class Month extends PureComponent {
         isToday = date === _today;
         isWeekend = isSunday(date) || isSaturday(date);
 
+        const weekDay = getISODay(date);
+
         isDisabled =
           (minDate && date < _minDate) ||
           (maxDate && date > _maxDate) ||
@@ -63,6 +72,43 @@ export default class Month extends PureComponent {
           (disabledDates &&
             disabledDates.length &&
             disabledDates.indexOf(date) !== -1);
+
+            /*
+        console.group("Day component")
+        console.log("DayComponent: ", DayComponent)
+        console.log("key: ", `day-${day}`)
+        console.log("currentYear: ", currentYear)
+        console.log("date: ", date)
+        console.log("day: ", day)
+        console.log("selected: ", selected)
+        console.log("isDisabled: ", isDisabled)
+        console.log("isToday: ", isToday)
+        console.log("isWeekend: ", isWeekend)
+        console.log("locale: ", locale)
+        console.log("month: ", month)
+        console.log("monthShort: ", monthShort)
+        console.log("theme: ", theme)
+        console.log("year: ", year)
+        console.groupEnd();
+        */
+        // className={{/*classNames(dayClassObj[date], dateClassObj[date])*/}}
+        const customDateStyle = dateClassObj[date];
+        console.log("dayClassObj: ", dayClassObj)
+        const customDayStyle = dayClassObj[weekDay];
+
+        /*
+        console.log("dateClassObj: ", dateClassObj);
+        console.log("dayClassObj: ", dayClassObj);
+        console.log("date, weekDay, customDateStyle, customDayStyle: ", date, weekDay, customDateStyle, customDayStyle);
+        */
+
+        console.log(customDayStyle)
+
+        const classes = classNames(customDateStyle, customDayStyle);
+
+        
+        console.log("classes: ", classes)
+        
 
         isWeekend = days[k] = (
           <DayComponent
@@ -79,8 +125,8 @@ export default class Month extends PureComponent {
             monthShort={monthShort}
             theme={theme}
             year={year}
-            className={dateClassObj[date]}
-            {...passThrough.Day}
+            className={classes}
+            {...(passThrough ? { ...passThrough.Day } : undefined)}
 					/>
 				);
 

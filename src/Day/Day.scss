@@ -12,6 +12,10 @@
     border-radius: 50%;
 }
 
+.weekend {
+    background-color: rgb(232, 232, 232);
+}
+
 .root {
     display: inline-block;
     box-sizing: border-box;
@@ -56,10 +60,6 @@
 
     &:nth-last-child(n-7) {
         position: relative;
-    }
-
-    &.weekend {
-        background-color: rgb(232, 232, 232);
     }
 
     &.today {

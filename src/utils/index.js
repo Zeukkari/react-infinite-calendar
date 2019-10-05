@@ -189,6 +189,7 @@ export function range(start, stop, step = 1) {
 export {default as animate} from './animate';
 
 export function getDateClasses(dateClasses){
+  console.log("dateClasses:" , dateClasses)
   const dateClassObj = {};
 
   if(dateClasses){
@@ -209,4 +210,31 @@ export function getDateClasses(dateClasses){
   }
 
   return dateClassObj;
+}
+
+export function getDayClasses(dayClasses){
+  console.log("dayClasses: ", dayClasses)
+  const dayClassObj = {};
+
+  if(dayClasses){
+    /*
+    dayClasses.forEach(dayClass => {
+      console.log("dayClass: ", dayClass)
+
+      dayClass.days.forEach(dateItem => {
+        const year = dateItem.getFullYear();
+        const month = dateItem.getMonth();
+        const day = dateItem.getDate();
+        const date = getDateString(year, month, day);
+        dayClassObj[date] = dayClassObj[date] ? `${dayClassObj[date]} ${dayClassObj.className}` : dayClassObj.className;
+
+      });
+
+    });
+    */
+  }
+
+  console.log("dayClassObj: ", dayClassObj)
+
+  return dayClassObj;
 }

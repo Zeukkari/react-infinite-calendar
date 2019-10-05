@@ -68,6 +68,8 @@ export default class Day extends PureComponent {
       color = todayColor;
     }
 
+    console.log("className: ", className)
+
     let styling = classNames(
       styles.root,
       {
@@ -78,7 +80,7 @@ export default class Day extends PureComponent {
         [styles.selected]: isSelected,
         [styles.weekend]: isWeekend
       },
-      className
+      styles[className]
     );
 
     return (

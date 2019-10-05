@@ -30,6 +30,8 @@ import subMonths from "date-fns/sub_months";
 
 const today = new Date();
 
+
+
 storiesOf("Calendar/Original/Default", module)
   .add("Default Configuration", () => <InfiniteCalendar />)
   .add("Initially Selected Date", () => (
@@ -58,6 +60,25 @@ storiesOf("Calendar/Original/Default", module)
   ))
   .add("Disable Specific Weekdays", () => (
     <InfiniteCalendar disabledDays={[0, 6]} />
+  ))
+  .add('Assign Custom Classes Specific Dates', () => (
+    <InfiniteCalendar dateClasses={[{
+      className: "yellowBg",
+      dates: [-10, -5, -6, 5, 6, 7, 2].map(amount =>
+        addDays(today, amount)
+      ),
+    },{
+      className: "boldText",
+      dates: [-10, -7, 2, 5, 6, 10].map(amount =>
+        addDays(today, amount)
+      )
+    }]} />
+  ))
+  .add('Assign Custom Classes Specific Days', () => (
+    <InfiniteCalendar dayClasses={{...{
+      "6": "weekend",
+      "7": "weekend",
+    }}} />
   ));
 
 storiesOf("Calendar/Original/Higher Order Components", module)
