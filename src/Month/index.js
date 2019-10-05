@@ -93,7 +93,7 @@ export default class Month extends PureComponent {
         */
         // className={{/*classNames(dayClassObj[date], dateClassObj[date])*/}}
         const customDateStyle = dateClassObj[date];
-        console.log("dayClassObj: ", dayClassObj)
+        // console.log("dayClassObj: ", dayClassObj)
         const customDayStyle = dayClassObj[weekDay];
 
         /*
@@ -102,7 +102,7 @@ export default class Month extends PureComponent {
         console.log("date, weekDay, customDateStyle, customDayStyle: ", date, weekDay, customDateStyle, customDayStyle);
         */
 
-        console.log(customDayStyle)
+        // console.log(customDayStyle)
 
         const classes = classNames(customDateStyle, customDayStyle);
 
