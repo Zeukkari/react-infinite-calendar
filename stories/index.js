@@ -76,9 +76,8 @@ storiesOf("Calendar/Original/Default", module)
   ))
   .add('Assign Custom Classes Specific Days', () => (
     <InfiniteCalendar dayClasses={{...{
-      "5": "friday",
-      "6": "saturday",
-      "7": "sunday",
+      "6": "weekend",
+      "7": "weekend",
     }}} />
   ));
 
