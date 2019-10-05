@@ -234,7 +234,7 @@ export function getDayClasses(dayClasses){
     */
   }
 
-  console.log("dayClassObj: ", dayClassObj)
+  // console.log("dayClassObj: ", dayClassObj)
 
   return dayClassObj;
 }
