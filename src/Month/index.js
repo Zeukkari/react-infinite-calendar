@@ -73,42 +73,9 @@ export default class Month extends PureComponent {
             disabledDates.length &&
             disabledDates.indexOf(date) !== -1);
 
-            /*
-        console.group("Day component")
-        console.log("DayComponent: ", DayComponent)
-        console.log("key: ", `day-${day}`)
-        console.log("currentYear: ", currentYear)
-        console.log("date: ", date)
-        console.log("day: ", day)
-        console.log("selected: ", selected)
-        console.log("isDisabled: ", isDisabled)
-        console.log("isToday: ", isToday)
-        console.log("isWeekend: ", isWeekend)
-        console.log("locale: ", locale)
-        console.log("month: ", month)
-        console.log("monthShort: ", monthShort)
-        console.log("theme: ", theme)
-        console.log("year: ", year)
-        console.groupEnd();
-        */
-        // className={{/*classNames(dayClassObj[date], dateClassObj[date])*/}}
         const customDateStyle = dateClassObj[date];
-        // console.log("dayClassObj: ", dayClassObj)
-        const customDayStyle = dayClassObj[weekDay];
-
-        /*
-        console.log("dateClassObj: ", dateClassObj);
-        console.log("dayClassObj: ", dayClassObj);
-        console.log("date, weekDay, customDateStyle, customDayStyle: ", date, weekDay, customDateStyle, customDayStyle);
-        */
-
-        // console.log(customDayStyle)
-
+        const customDayStyle = dayClassObj && dayClassObj[weekDay] ? dayClassObj[weekDay] : '';
         const classes = classNames(customDateStyle, customDayStyle);
-
-        
-        console.log("classes: ", classes)
-        
 
         isWeekend = days[k] = (
           <DayComponent
