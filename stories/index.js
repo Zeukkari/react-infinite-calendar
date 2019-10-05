@@ -296,19 +296,13 @@ storiesOf("Calendar/TKP", module)
   ))
   .add("Landscape", () => (
     <InfiniteCalendar
-
       theme={defaultTheme}
       locale={defaultLocale}
       onSelect={onSelect}
       selected="2019-10-03"
       displayOptions={{
-        layout: "landscape",
-        showHeader: false
+        layout: "landscape"
       }}
-      dayClasses={{...{
-        "6": "saturday",
-        "7": "sunday",
-      }}}
       disabledDays={[]}
       width={"90%"}
       height={window.innerHeight - 147}

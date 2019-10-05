@@ -333,9 +333,6 @@ export default class Calendar extends Component {
             {...passThrough.Header}
           />
         }
-        <div style={{display: "flex", flexDirection: "row"}}>
-          <div style={{display: "flex", flex: 1, flexDirection: "row"}}><h1>vasen palkki</h1></div>
-
         <div className={styles.container.wrapper}>
           {showWeekdays &&
             <Weekdays weekdays={locale.weekdays} weekStartsOn={locale.weekStartsOn} theme={theme} />
@@ -401,8 +398,6 @@ export default class Calendar extends Component {
               {...passThrough.Years}
             />
           }
-        </div>
-        <div style={{display: "flex", flex: 1, flexDirection: "row"}}><h1>oikea palkki</h1></div>
         </div>
       </div>
     );
