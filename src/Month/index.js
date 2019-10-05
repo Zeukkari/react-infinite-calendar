@@ -92,9 +92,9 @@ export default class Month extends PureComponent {
         console.groupEnd();
         */
         // className={{/*classNames(dayClassObj[date], dateClassObj[date])*/}}
-        const customDateStyle = dateClassObj[date];
+        const customDateStyle = dateClassObj && dateClassObj[date];
         // console.log("dayClassObj: ", dayClassObj)
-        const customDayStyle = dayClassObj[weekDay];
+        const customDayStyle = dayClassObj && dayClassObj[weekDay];
 
         /*
         console.log("dateClassObj: ", dateClassObj);
@@ -106,9 +106,9 @@ export default class Month extends PureComponent {
 
         const classes = classNames(customDateStyle, customDayStyle);
 
-        
+
         console.log("classes: ", classes)
-        
+
 
         isWeekend = days[k] = (
           <DayComponent
