@@ -59,7 +59,6 @@ export default class Month extends PureComponent {
 
         date = getDateString(year, month, day);
         isToday = date === _today;
-        isWeekend = isSunday(date) || isSaturday(date);
 
         const weekDay = getISODay(date);
 
@@ -77,7 +76,7 @@ export default class Month extends PureComponent {
         const customDayStyle = dayClassObj && dayClassObj[weekDay] ? dayClassObj[weekDay] : '';
         const classes = classNames(customDateStyle, customDayStyle);
 
-        isWeekend = days[k] = (
+        days[k] = (
           <DayComponent
             key={`day-${day}`}
             currentYear={currentYear}
@@ -86,7 +85,6 @@ export default class Month extends PureComponent {
             selected={selected}
             isDisabled={isDisabled}
             isToday={isToday}
-            isWeekend={isWeekend}
             locale={locale}
             month={month}
             monthShort={monthShort}
@@ -105,6 +103,7 @@ export default class Month extends PureComponent {
           className={classNames(styles.row, {
             [styles.partial]: row.length !== 7
           })}
+          style={{outlineColor: "red", outlineStyle: "dashed", overflow: "visible"}}
           role="row"
           aria-label={`Week ${i + 1}`}
         >
@@ -134,7 +133,7 @@ export default class Month extends PureComponent {
         className={styles.root}
         style={{ ...style, lineHeight: `${rowHeight}px` }}
       >
-        <div className={styles.rows}>
+        <div className={styles.rows} style={{overflow: "visible"}}>
           {this.renderRows()}
           {showOverlay && (
             <label
