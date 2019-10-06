@@ -16,7 +16,7 @@ export default function defaultSelectionRenderer(
     setDisplay
   }
 ) {
-  const date = parse(value);
+  const date = Date.parse(value); // , 'yyyy-MM-dd', new Date());
   const values = date && [
     {
       active: display === "years",
@@ -50,7 +50,7 @@ export default function defaultSelectionRenderer(
     <div
       key={key}
       className={styles.wrapper}
-      aria-label={format(date, dateFormat + " YYYY", { locale })}
+      aria-label={format(date, dateFormat + " yyyy", { locale })}
     >
       {values.map(({ handleClick, item, key, value, active, title }) => {
         return (

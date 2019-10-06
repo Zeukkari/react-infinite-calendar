@@ -14,7 +14,7 @@ import Years from '../Years';
 import Day from '../Day';
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
-import startOfDay from 'date-fns/start_of_day';
+import startOfDay from 'date-fns/startOfDay';
 
 import * as containerStyle from './Container.scss'
 import * as dayStyle from '../Day/Day.scss'
@@ -135,10 +135,14 @@ export default class Calendar extends Component {
     }
   }
   updateYears(props = this.props) {
-    this._min = parse(props.min);
-    this._max = parse(props.max);
-    this._minDate = parse(props.minDate);
-    this._maxDate = parse(props.maxDate);
+    console.log("this.props: ", this.props);
+
+    this._min = new Date(Date.parse(props.min));
+    this._max = new Date(Date.parse(props.max));
+    this._minDate = new Date(Date.parse(props.minDate));
+    this._maxDate = new Date(Date.parse(props.maxDate));
+
+    console.log("this._min: ", this._min);
 
     const min = this._min.getFullYear();
     const minMonth = this._min.getMonth();
@@ -163,7 +167,10 @@ export default class Calendar extends Component {
     this.months = months;
   }
   getDisabledDates(disabledDates) {
-    return disabledDates && disabledDates.map((date) => format(parse(date), 'YYYY-MM-DD'));
+    return disabledDates && disabledDates.map((date) => {
+      console.log("date: ", date);
+      return format(Date.parse(date), 'yyyy-MM-dd', new Date());
+    });
   }
   _displayOptions = {};
   getDisplayOptions(displayOptions = this.props.displayOptions) {
@@ -318,7 +325,7 @@ export default class Calendar extends Component {
         }}
         {...passThrough.rootNode}
       >
-        {showHeader &&
+        {/*showHeader &&
           <HeaderComponent
             selected={selected}
             shouldAnimate={Boolean(shouldHeaderAnimate && display !== 'years')}
@@ -332,12 +339,20 @@ export default class Calendar extends Component {
             displayDate={displayDate}
             {...passThrough.Header}
           />
-        }
+        */}
+        {/*
+        <div className={styles.container.leftColumn}>
+          <div className={styles.container.leftLine}>eka</div>
+          <div className={styles.container.leftLine}>toka</div>
+          <div className={styles.container.leftLine}>kolmas</div>
+        </div>
+          */}
         <div className={styles.container.wrapper}>
+
+          <div className={styles.container.listWrapper}>
           {showWeekdays &&
             <Weekdays weekdays={locale.weekdays} weekStartsOn={locale.weekStartsOn} theme={theme} />
           }
-          <div className={styles.container.listWrapper}>
             {showTodayHelper &&
               <Today
                 scrollToDate={this.scrollToDate}

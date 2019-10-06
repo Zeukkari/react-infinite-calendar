@@ -2,7 +2,8 @@
 
 .root {
   position: relative;
-  display: table;
+  display: flex;
+  flex-direction: row;
   z-index: 1;
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
@@ -12,22 +13,35 @@
   outline: none;
   text-align: left;
 
-  &.landscape {
-    display: flex;
-    flex-direction: row;
 
-    .wrapper {
-      position: relative;
-      flex-grow: 1;
-      overflow: hidden;
-      z-index: 1;
-      border-top-right-radius: $borderRadius;
-      border-bottom-right-radius: $borderRadius;
-    }
-  }
+  .wrapper {
+    flex: 1 3 auto;
+    flex-direction: row;
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+    z-index: 1;
+    border-top-right-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+ }
+
 }
 .listWrapper {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   background-color: #FFF;
 }
+
+.leftColumn {
+  flex: 1 3 auto;
+  display: flex;
+  left: 50px;
+  z-index: 1;
+  flex-direction: column;
+  position: relative;
+  top: 56px;
+  overflow: visible;
+  background-color: #0FF;
+
+}
+

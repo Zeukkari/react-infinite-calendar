@@ -4,9 +4,9 @@ import VirtualList from 'react-tiny-virtual-list';
 import classNames from 'classnames';
 import { emptyFn, getMonthsForYear } from '../utils';
 import format from 'date-fns/format';
-import isAfter from 'date-fns/is_after';
-import isBefore from 'date-fns/is_before';
-import isSameMonth from 'date-fns/is_same_month';
+import isAfter from 'date-fns/isAfter';
+import isBefore from 'date-fns/isBefore';
+import isSameMonth from 'date-fns/isSameMonth';
 import styles from './Years.scss';
 
 const SPACING = 40;
@@ -89,7 +89,7 @@ export default class Years extends Component {
                 [styles.disabled]: isDisabled,
               })}
               style={style}
-              title={`Set date to ${format(date, 'MMMM Do, YYYY')}`}
+              title={`Set date to ${format(date, 'MMMM Do, yyyy')}`}
             >
               {format(date, 'MMM', { locale })}
             </li>

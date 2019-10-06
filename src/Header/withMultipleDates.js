@@ -12,7 +12,7 @@ export default withImmutableProps(({renderSelection, setDisplayDate}) => ({
     }
 
     const dates = values.sort();
-    const index = values.indexOf(format(parse(displayDate), 'YYYY-MM-DD'));
+    const index = values.indexOf(format(Date.parse(displayDate), 'yyyy-MM-dd'));
 
     return (
       <Slider

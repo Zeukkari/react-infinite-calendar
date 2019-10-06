@@ -4,10 +4,11 @@ import {
   withProps,
   withState,
 } from 'recompose';
-import addDays from 'date-fns/add_days';
+import addDays from 'date-fns/addDays';
 import format from 'date-fns/format';
-import isAfter from 'date-fns/is_after';
-import isBefore from 'date-fns/is_before';
+import isAfter from 'date-fns/isAfter';
+import isBefore from 'date-fns/isBefore';
+import * as defaultLocale from 'date-fns/locale/fi';
 import {keyCodes, withImmutableProps} from '../utils';
 
 const enhanceDay = withProps(props => ({
@@ -22,12 +23,14 @@ export const withKeyboardSupport = compose(
   withHandlers({
     onKeyDown: props => e => handleKeyDown(e, props),
   }),
-  withProps(({highlightedDate, onKeyDown, onSelect, passThrough, setHighlight}) => ({
+  withProps(({highlightedDate, onKeyDown, onSelect, passThrough, setHighlight}) => {
+    console.log("highlightedDate: ", highlightedDate)
+    return {
     passThrough: {
       ...passThrough,
       Day: {
         ...passThrough.Day,
-        highlightedDate: format(highlightedDate, 'YYYY-MM-DD'),
+        highlightedDate: format(Date.parse(highlightedDate || new Date()), 'yyyy-MM-dd', {locale: defaultLocale.default}),
         onClick: (date) => {
           setHighlight(null);
           passThrough.Day.onClick(date);
@@ -35,7 +38,7 @@ export const withKeyboardSupport = compose(
       },
       rootNode: {onKeyDown},
     },
-  })),
+  }}),
 );
 
 function handleKeyDown(e, props) {

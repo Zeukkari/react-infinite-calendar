@@ -8,7 +8,7 @@ export default class Day extends PureComponent {
     let { date, isDisabled, onClick } = this.props;
 
     if (!isDisabled && typeof onClick === "function") {
-      onClick(parse(date));
+      onClick(parse(date, 'yyyy-MM-dd', new Date()));
     }
   };
 

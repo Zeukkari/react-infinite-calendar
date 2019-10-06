@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
-import { getDateString } from "../utils";
-import { isSaturday, isSunday, getISODay } from "date-fns";
+import { getDateString, getWeeksInMonth } from "../utils";
+import { isSaturday, isSunday, getISODay, parseISO, getWeekOfMonth, endOfMonth, parse } from "date-fns";
 import format from "date-fns/format";
-import getDay from "date-fns/get_day";
-import isSameYear from "date-fns/is_same_year";
+import getDay from "date-fns/getDay";
+import isSameYear from "date-fns/isSameYear";
+import * as defaultLocale from "date-fns/locale/fi"
 import styles from "./Month.scss";
 
 export default class Month extends PureComponent {
@@ -29,7 +30,9 @@ export default class Month extends PureComponent {
     const currentYear = today.getFullYear();
     const year = monthDate.getFullYear();
     const month = monthDate.getMonth();
-    const monthShort = format(monthDate, "MMM", { locale: locale.locale });
+    console.log("monthDate: ", monthDate);
+    console.log("locale: ", locale);
+    const monthShort = format(Date.parse(monthDate), "MMM", { locale: defaultLocale.default });
     const monthRows = [];
     let day = 0;
     let isDisabled = false;
@@ -44,11 +47,12 @@ export default class Month extends PureComponent {
     */
 
     // Used for faster comparisons
-    const _today = format(today, "YYYY-MM-DD");
-    const _minDate = format(minDate, "YYYY-MM-DD");
-    const _maxDate = format(maxDate, "YYYY-MM-DD");
+    const _today = format(today, "yyyy-MM-dd");
+    const _minDate = format(minDate, "yyyy-MM-dd");
+    const _maxDate = format(maxDate, "yyyy-MM-dd");
 
     // Oh the things we do in the name of performance...
+
     for (let i = 0, len = rows.length; i < len; i++) {
       row = rows[i];
       days = [];
@@ -59,9 +63,8 @@ export default class Month extends PureComponent {
 
         date = getDateString(year, month, day);
         isToday = date === _today;
-        isWeekend = isSunday(date) || isSaturday(date);
 
-        const weekDay = getISODay(date);
+        const weekDay = parseISO(date);
 
         isDisabled =
           (minDate && date < _minDate) ||
@@ -108,9 +111,9 @@ export default class Month extends PureComponent {
 
 
         console.log("classes: ", classes)
+        // console.log("locale: ", locale.locale.default);
 
-
-        isWeekend = days[k] = (
+         days[k] = (
           <DayComponent
             key={`day-${day}`}
             currentYear={currentYear}
@@ -119,8 +122,7 @@ export default class Month extends PureComponent {
             selected={selected}
             isDisabled={isDisabled}
             isToday={isToday}
-            isWeekend={isWeekend}
-            locale={locale}
+            locale={locale.default}
             month={month}
             monthShort={monthShort}
             theme={theme}
@@ -145,13 +147,11 @@ export default class Month extends PureComponent {
         </ul>
       );
     }
-
     return monthRows;
   }
 
   render() {
     const {
-      locale: { locale },
       monthDate,
       today,
       rows,
@@ -160,13 +160,31 @@ export default class Month extends PureComponent {
       style,
       theme
     } = this.props;
-    const dateFormat = isSameYear(monthDate, today) ? "MMMM" : "MMMM YYYY";
+    console.log("this.props: ", this.props)
+    const locale = this.props.locale.default;
 
+    const dateFormat = isSameYear(monthDate, today) ? "MMMM" : "MMMM yyyy";
+
+    const myDate = Date.parse(monthDate, 'yyyy-MM-dd', new Date());
+    console.log("monthDate: ", myDate);
+
+    const weeksInMonth = getWeeksInMonth(myDate);
+    console.log("weeksInMonth: ", weeksInMonth)
+
+    const endWeek = getWeekOfMonth
     return (
       <div
         className={styles.root}
         style={{ ...style, lineHeight: `${rowHeight}px` }}
       >
+        <div className={styles.leftColumn}>
+          <ul className={styles.leftRow}>
+            {rows.map((row, index) => (
+            <li>{`${index}`} </li>
+            ))}
+
+          </ul>
+        </div>
         <div className={styles.rows}>
           {this.renderRows()}
           {showOverlay && (

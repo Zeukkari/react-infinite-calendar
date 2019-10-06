@@ -21,12 +21,12 @@ import Years from "../src/Years";
 import colors from "../src/_variables.scss";
 
 // Date manipulation utils
-import addDays from "date-fns/add_days";
-import addMonths from "date-fns/add_months";
-import endOfMonth from "date-fns/end_of_month";
+import addDays from "date-fns/addDays";
+import addMonths from "date-fns/addMonths";
+import endOfMonth from "date-fns/endOfMonth";
 import format from "date-fns/format";
-import isBefore from "date-fns/is_before";
-import subMonths from "date-fns/sub_months";
+import isBefore from "date-fns/isBefore";
+import subMonths from "date-fns/subMonths";
 
 const today = new Date();
 
@@ -89,9 +89,7 @@ storiesOf("Calendar/Original/Higher Order Components", module)
         start: addDays(new Date(), 2),
         end: addDays(new Date(), 17)
       }}
-      locale={{
-        headerFormat: "MMM Do"
-      }}
+
       Component={withRange(withKeyboardSupport(Calendar))}
     />
   ))
@@ -168,7 +166,7 @@ storiesOf("Calendar/Original/Customization", module)
     />
   ))
   .add("Select Year First", () => (
-    <InfiniteCalendar display={"years"} selected={null} />
+    <InfiniteCalendar display={"years"} selected={undefined} />
   ))
   .add("Dynamic Selection Color", () => (
     <InfiniteCalendar
@@ -239,7 +237,7 @@ storiesOf("Calendar/Original/Events", module)
   .add("On Select", () => (
     <InfiniteCalendar
       onSelect={date =>
-        alert(`You selected: ${format(date, "ddd, MMM Do YYYY")}`)
+        alert(`You selected: ${format(date, "ddd, MMM Do yyyy")}`)
       }
     />
   ))
@@ -284,7 +282,7 @@ const defaultLocale = {
 const onScroll = scrollTop =>
   console.info("onScroll() – Scroll top:", scrollTop);
 const onSelect = date =>
-  alert(`You selected: ${format(date, "ddd, MMM Do YYYY")}`);
+  alert(`You selected: ${format(date, "ddd, MMM Do yyyy")}`);
 
 storiesOf("Calendar/TKP", module)
   .add("Default", () => (
@@ -299,7 +297,6 @@ storiesOf("Calendar/TKP", module)
       theme={defaultTheme}
       locale={defaultLocale}
       onSelect={onSelect}
-      selected="2019-10-03"
       displayOptions={{
         layout: "landscape"
       }}
