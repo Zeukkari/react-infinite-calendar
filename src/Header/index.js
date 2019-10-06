@@ -14,7 +14,7 @@ export default class Header extends PureComponent {
     dateFormat: PropTypes.string,
     display: PropTypes.string,
     layout: PropTypes.string,
-    locale: PropTypes.object,
+    locale: PropTypes.any,
     onYearClick: PropTypes.func,
     selected: PropTypes.any,
     shouldAnimate: PropTypes.bool,
@@ -24,7 +24,7 @@ export default class Header extends PureComponent {
   render() {
     let {
       layout,
-      locale: {blank},
+      locale,
       selected,
       renderSelection,
       theme,

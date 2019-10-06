@@ -13,7 +13,9 @@ import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/startOfMonth';
 import * as defaultLocale from 'date-fns/locale/fi'
 import Month from '../Month';
+import Weeks from '../Weeks'
 import styles from './MonthList.scss';
+import defaultTheme from '../utils/defaultTheme';
 
 const AVERAGE_ROWS_PER_MONTH = 5;
 
@@ -179,6 +181,22 @@ export default class MonthList extends Component {
     const {scrollTop} = this.state;
 
     return (
+      <div className={styles.wrapper}>
+
+  <Weeks
+    weekdays={["1", "2", "3", "4", "5", "6", "7","8","9","10"]}
+    weekStartsOn={1}
+    theme={defaultTheme}
+  />
+
+
+  <Weeks
+    weekdays={["Su", "Ma", "Ti", "Ke", "To", "Pe", "La"]}
+    weekStartsOn={1}
+    theme={defaultTheme}
+  />
+
+
       <VirtualList
         ref={this._getRef}
         width={width}
@@ -193,6 +211,7 @@ export default class MonthList extends Component {
         style={{lineHeight: `${rowHeight}px`}}
         overscanCount={overscanMonthCount}
       />
+      </div>
     );
   }
 }

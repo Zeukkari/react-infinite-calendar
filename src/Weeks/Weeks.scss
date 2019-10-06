@@ -1,0 +1,24 @@
+@import "../variables";
+
+.root {
+  position: relative;
+  z-index: 5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+  box-shadow: 0px -1px 0 #ed6930 inset;
+}
+
+.day {
+  background-color: green;
+  opacity: 0.5;
+  padding: 15px 0;
+  display: block;
+  flex-basis: 1 / 7 * 100%;
+  font-weight: 500;
+  text-align: center;
+}

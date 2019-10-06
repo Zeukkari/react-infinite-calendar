@@ -1,6 +1,9 @@
 .root {
-  width: 100% !important;
+  width: 100%;
   -webkit-overflow-scrolling: touch;
+
+  display: flex;
+  justify-content: center;
 
   &.scrolling {
     > div {
@@ -12,3 +15,21 @@
     }
   }
 }
+
+.listWrapper2 {
+  position: relative;
+  overflow: visible;
+  background-color: cyan;
+
+}
+
+  .wrapper {
+    flex-direction: row;
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+    z-index: 1;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+ }

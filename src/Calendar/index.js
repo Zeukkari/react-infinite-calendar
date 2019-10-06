@@ -10,6 +10,7 @@ import Today, {DIRECTION_UP, DIRECTION_DOWN} from '../Today';
 import Header from '../Header';
 import MonthList from '../MonthList';
 import Weekdays from '../Weekdays';
+import Weeks from '../Weeks';
 import Years from '../Years';
 import Day from '../Day';
 import parse from 'date-fns/parse';
@@ -43,7 +44,7 @@ export const withDefaultProps = defaultProps({
   passThrough: {},
   rowHeight: 56,
   tabIndex: 1,
-  width: 400,
+  width: 500,
   YearsComponent: Years,
 });
 
@@ -313,19 +314,8 @@ export default class Calendar extends Component {
     const dateClassObj = getDateClasses(dateClasses);
 
     return (
-      <div
-        tabIndex={tabIndex}
-        className={classNames(className, styles.container.root, {
-          [styles.container.landscape]: layout === 'landscape',
-        })}
-        style={{color: theme.textColor.default, width}}
-        aria-label="Calendar"
-        ref={node => {
-          this.node = node;
-        }}
-        {...passThrough.rootNode}
-      >
-        {/*showHeader &&
+    <div style={{display: "flex", flexDirection: "column", flex: "1 1 auto", minHeight: "100vh"}}>
+        {showHeader &&
           <HeaderComponent
             selected={selected}
             shouldAnimate={Boolean(shouldHeaderAnimate && display !== 'years')}
@@ -339,7 +329,21 @@ export default class Calendar extends Component {
             displayDate={displayDate}
             {...passThrough.Header}
           />
-        */}
+        }
+
+      <div
+        tabIndex={tabIndex}
+        className={classNames(className, styles.container.root, {
+          [styles.container.landscape]: layout === 'landscape',
+        })}
+        style={{color: theme.textColor.default, width}}
+        aria-label="Calendar"
+        ref={node => {
+          this.node = node;
+        }}
+        {...passThrough.rootNode}
+      >
+
         {/*
         <div className={styles.container.leftColumn}>
           <div className={styles.container.leftLine}>eka</div>
@@ -348,6 +352,7 @@ export default class Calendar extends Component {
         </div>
           */}
         <div className={styles.container.wrapper}>
+
 
           <div className={styles.container.listWrapper}>
           {showWeekdays &&
@@ -414,6 +419,7 @@ export default class Calendar extends Component {
             />
           }
         </div>
+      </div>
       </div>
     );
   }

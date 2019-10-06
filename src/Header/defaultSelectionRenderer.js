@@ -26,7 +26,7 @@ export default function defaultSelectionRenderer(
       },
       item: "year",
       title: display === "days" ? `Change year` : null,
-      value: date.getFullYear()
+      value: new Date(date).getFullYear()
     },
     {
       active: display === "days",

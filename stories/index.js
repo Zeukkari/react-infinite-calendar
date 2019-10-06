@@ -11,10 +11,12 @@ import InfiniteCalendar, {
 } from "../src";
 
 import Header from "../src/Header";
+import Layout from "../src/Layout";
 import Day from "../src/Day";
 import Month from "../src/Month";
 import MonthList from "../src/MonthList";
 import Today from "../src/Today";
+import Weeks from "../src/Weeks";
 import Weekdays from "../src/Weekdays";
 import Years from "../src/Years";
 
@@ -288,20 +290,21 @@ storiesOf("Calendar/TKP", module)
   .add("Default", () => (
     <InfiniteCalendar
       theme={defaultTheme}
-      locale={defaultLocale}
+      locale={{localize: defaultLocale}}
       onSelect={onSelect}
+      width={"100%"}
     />
   ))
   .add("Landscape", () => (
     <InfiniteCalendar
       theme={defaultTheme}
-      locale={defaultLocale}
+      locale={{localize: defaultLocale}}
       onSelect={onSelect}
       displayOptions={{
         layout: "landscape"
       }}
       disabledDays={[]}
-      width={"90%"}
+      width={"70%"}
       height={window.innerHeight - 147}
       rowHeight={70}
     />
@@ -309,8 +312,7 @@ storiesOf("Calendar/TKP", module)
   .add("Lukittuja päiviä", () => (
     <InfiniteCalendar
       theme={defaultTheme}
-      locale={defaultLocale}
-      locale={defaultLocale}
+      locale={{localize: defaultLocale}}
       onSelect={onSelect}
       disabledDates={[-10, -5, -6, 5, 6, 7, 2].map(amount =>
         addDays(today, amount)
@@ -401,7 +403,15 @@ storiesOf("Components/Month", module).add("Default", () => (
     rowHeight={56}
     selected="2019-09-29"
     showOverlay={true}
+    min={subMonths(today, 1)} // Minimum month to render
+    minDate={addDays(today, 1)} // Minimum selectable date
+    max={subMonths(today, 1)} // Minimum month to render
+    maxDate={addDays(today, 90)} // Minimum selectable date
   />
+));
+
+storiesOf("Components/Layout", module).add("Default", () => (
+  <Layout />
 ));
 
 storiesOf("Components/Weekdays", module).add("Default", () => (
@@ -412,11 +422,19 @@ storiesOf("Components/Weekdays", module).add("Default", () => (
   />
 ));
 
+storiesOf("Components/Weeks", module).add("Default", () => (
+  <Weeks
+    weekdays={["Su", "Ma", "Ti", "Ke", "To", "Pe", "La"]}
+    weekStartsOn={1}
+    theme={defaultTheme}
+  />
+));
+
 storiesOf("Components/Header", module).add("Default", () => (
   <Header
-    dateFormat="dddd, D MMM"
+    dateFormat="dddd, d MMM"
     display="days"
-    locale={defaultLocale}
+    locale={{localize: defaultLocale}}
     theme={defaultTheme}
     selected="2019-09-29"
   />

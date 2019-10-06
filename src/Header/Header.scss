@@ -3,10 +3,14 @@
 .root {
     position: relative;
     display: flex;
+    flex-shrink: 2;
     align-items: center;
     box-sizing: border-box;
     overflow: hidden;
     min-height: 98px;
+    width: calc(100% - 520px);
+    align-self: left;
+    align-content: center;
     padding: 20px;
     line-height: 1.3;
     font-weight: 400;

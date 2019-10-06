@@ -30,7 +30,7 @@ export default class Day extends PureComponent {
         className={styles.selection}
         data-date={date}
         style={{
-          backgroundColor: this.selectionColor,
+          backgroundColor: selectionColor,
           color: textColor.active,
           ...selectionStyle
         }}

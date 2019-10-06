@@ -1,12 +1,13 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import { getDateString, getWeeksInMonth } from "../utils";
-import { isSaturday, isSunday, getISODay, parseISO, getWeekOfMonth, endOfMonth, parse } from "date-fns";
+import { isSaturday, isSunday, getISODay, parseISO, getWeekOfMonth, endOfMonth, parse, differenceInCalendarWeeks, startOfYear } from "date-fns";
 import format from "date-fns/format";
 import getDay from "date-fns/getDay";
 import isSameYear from "date-fns/isSameYear";
 import * as defaultLocale from "date-fns/locale/fi"
 import styles from "./Month.scss";
+import defaultTheme from '../utils/defaultTheme';
 
 export default class Month extends PureComponent {
   renderRows() {
@@ -30,8 +31,7 @@ export default class Month extends PureComponent {
     const currentYear = today.getFullYear();
     const year = monthDate.getFullYear();
     const month = monthDate.getMonth();
-    console.log("monthDate: ", monthDate);
-    console.log("locale: ", locale);
+
     const monthShort = format(Date.parse(monthDate), "MMM", { locale: defaultLocale.default });
     const monthRows = [];
     let day = 0;
@@ -135,6 +135,7 @@ export default class Month extends PureComponent {
         dow += 1;
       }
       monthRows[i] = (
+
         <ul
           key={`Row-${i}`}
           className={classNames(styles.row, {
@@ -145,6 +146,8 @@ export default class Month extends PureComponent {
         >
           {days}
         </ul>
+
+
       );
     }
     return monthRows;
@@ -168,8 +171,19 @@ export default class Month extends PureComponent {
     const myDate = Date.parse(monthDate, 'yyyy-MM-dd', new Date());
     console.log("monthDate: ", myDate);
 
-    const weeksInMonth = getWeeksInMonth(myDate);
+    // const weeksInMonth = getWeeksInMonth(myDate);
+    // console.log("weeksInMonth: ", weeksInMonth);
+
+
+    const foo = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
+
+    console.log("foo: ", foo)
+    const weeksInMonth = getWeeksInMonth(foo);
     console.log("weeksInMonth: ", weeksInMonth)
+    const januaryFirst = startOfYear(myDate);
+    console.log("januryFirst: ", januaryFirst);
+    const weekNumber = differenceInCalendarWeeks(myDate, januaryFirst);
+
 
     const endWeek = getWeekOfMonth
     return (
@@ -177,17 +191,14 @@ export default class Month extends PureComponent {
         className={styles.root}
         style={{ ...style, lineHeight: `${rowHeight}px` }}
       >
-        <div className={styles.leftColumn}>
-          <ul className={styles.leftRow}>
-            {rows.map((row, index) => (
-            <li>{`${index}`} </li>
-            ))}
 
-          </ul>
-        </div>
         <div className={styles.rows}>
+
+
+
           {this.renderRows()}
           {showOverlay && (
+
             <label
               className={classNames(styles.label, {
                 [styles.partialFirstRow]: rows[0].length !== 7
