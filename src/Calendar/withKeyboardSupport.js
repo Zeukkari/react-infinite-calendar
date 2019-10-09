@@ -24,7 +24,7 @@ export const withKeyboardSupport = compose(
     onKeyDown: props => e => handleKeyDown(e, props),
   }),
   withProps(({highlightedDate, onKeyDown, onSelect, passThrough, setHighlight}) => {
-    console.log("highlightedDate: ", highlightedDate)
+    // console.log("highlightedDate: ", highlightedDate)
     return {
     passThrough: {
       ...passThrough,

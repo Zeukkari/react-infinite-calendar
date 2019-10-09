@@ -11,7 +11,6 @@ import InfiniteCalendar, {
 } from "../src";
 
 import Header from "../src/Header";
-import Layout from "../src/Layout";
 import Day from "../src/Day";
 import Month from "../src/Month";
 import MonthList from "../src/MonthList";
@@ -65,23 +64,24 @@ storiesOf("Calendar/Original/Default", module)
   ))
   .add('Assign Custom Classes Specific Dates', () => (
     <InfiniteCalendar dateClasses={[{
-      className: "yellowBg",
+      className: "weekend",
       dates: [-10, -5, -6, 5, 6, 7, 2].map(amount =>
         addDays(today, amount)
       ),
     },{
-      className: "boldText",
+      className: "weekend",
       dates: [-10, -7, 2, 5, 6, 10].map(amount =>
         addDays(today, amount)
       )
     }]} />
   ))
   .add('Assign Custom Classes Specific Days', () => (
-    <InfiniteCalendar dayClasses={{...{
-      "5": "friday",
-      "6": "saturday",
-      "7": "sunday",
-    }}} />
+    <InfiniteCalendar dateClasses={[{
+      className: "weekend",
+      dates: [1,2,3,4,5,6,7].map(amount =>
+        addDays(today, amount)
+      ),
+    }]} />
   ));
 
 storiesOf("Calendar/Original/Higher Order Components", module)
@@ -254,19 +254,24 @@ storiesOf("Calendar/Original/Events", module)
   ]);
 
 const defaultTheme = {
-  floatingNav: {
-    background: "rgba(105, 74, 228, 0.91)",
-    chevron: "#FFA726",
-    color: "#fff"
-  },
-  headerColor: "#FFF",
-  selectionColor: "ed6930",
-  textColor: {
-    active: "#ed6930",
-    default: "#0"
-  },
-  todayColor: "#0",
-  weekdayColor: "rgb(146, 118, 255)"
+    accentColor: '#999',
+    floatingNav: {
+      background: 'rgba(255, 255, 255, 0.25)',
+      chevron: '#ed6930',
+      color: '#FFF',
+    },
+    headerColor: 'darkgrey',
+    selectionColor: '#FFF',
+    textColor: {
+      active: '#AAA',
+      default: '#3d3d3d',
+      disabled: '#999'
+    },
+    todayColor: '#ed6930',
+    weekdayColor: '#559FFF',
+    weekendColor: '#999'
+
+
 };
 
 const defaultLocale = {
@@ -303,7 +308,7 @@ storiesOf("Calendar/TKP", module)
       displayOptions={{
         layout: "landscape"
       }}
-      disabledDays={[]}
+      disabledDays={[6,7]}
       width={"70%"}
       height={window.innerHeight - 147}
       rowHeight={70}
@@ -410,9 +415,6 @@ storiesOf("Components/Month", module).add("Default", () => (
   />
 ));
 
-storiesOf("Components/Layout", module).add("Default", () => (
-  <Layout />
-));
 
 storiesOf("Components/Weekdays", module).add("Default", () => (
   <Weekdays

@@ -1,16 +1,21 @@
 module.exports = {
-  accentColor: '#448AFF',
+  accentColor: 'lightgreen',
   floatingNav: {
-    background: 'rgba(56, 87, 138, 0.94)',
-    chevron: '#FFA726',
+    background: 'rgba(255, 255, 255, 0.25)',
+    chevron: '#ed6930',
     color: '#FFF',
   },
-  headerColor: '#448AFF',
-  selectionColor: '#559FFF',
+  headerColor: 'lightgreen',
+  selectionColor: '#FFF',
   textColor: {
-    active: '#FFF',
-    default: '#333',
+    active: '#AAA',
+    default: '#3d3d3d',
+    disabled: '#999'
   },
-  todayColor: '#FFA726',
+  todayColor: '#ed6930',
   weekdayColor: '#559FFF',
+  weekendColor: '#999',
+  disabled: {
+    background: '#999'
+  }
 };

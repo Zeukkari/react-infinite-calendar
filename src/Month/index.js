@@ -110,7 +110,7 @@ export default class Month extends PureComponent {
         const classes = classNames(customDateStyle, customDayStyle);
 
 
-        console.log("classes: ", classes)
+        // console.log("classes: ", classes)
         // console.log("locale: ", locale.locale.default);
 
          days[k] = (
@@ -163,13 +163,13 @@ export default class Month extends PureComponent {
       style,
       theme
     } = this.props;
-    console.log("this.props: ", this.props)
+    // console.log("this.props: ", this.props)
     const locale = this.props.locale.default;
 
     const dateFormat = isSameYear(monthDate, today) ? "MMMM" : "MMMM yyyy";
 
     const myDate = Date.parse(monthDate, 'yyyy-MM-dd', new Date());
-    console.log("monthDate: ", myDate);
+    // console.log("monthDate: ", myDate);
 
     // const weeksInMonth = getWeeksInMonth(myDate);
     // console.log("weeksInMonth: ", weeksInMonth);
@@ -177,11 +177,11 @@ export default class Month extends PureComponent {
 
     const foo = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
 
-    console.log("foo: ", foo)
+    // console.log("foo: ", foo)
     const weeksInMonth = getWeeksInMonth(foo);
-    console.log("weeksInMonth: ", weeksInMonth)
+    // console.log("weeksInMonth: ", weeksInMonth)
     const januaryFirst = startOfYear(myDate);
-    console.log("januryFirst: ", januaryFirst);
+    // console.log("januryFirst: ", januaryFirst);
     const weekNumber = differenceInCalendarWeeks(myDate, januaryFirst);
 
 
@@ -193,9 +193,6 @@ export default class Month extends PureComponent {
       >
 
         <div className={styles.rows}>
-
-
-
           {this.renderRows()}
           {showOverlay && (
 

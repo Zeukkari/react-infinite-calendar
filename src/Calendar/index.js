@@ -44,7 +44,7 @@ export const withDefaultProps = defaultProps({
   passThrough: {},
   rowHeight: 56,
   tabIndex: 1,
-  width: 500,
+  width: "70%",
   YearsComponent: Years,
 });
 
@@ -61,6 +61,7 @@ export default class Calendar extends Component {
   static propTypes = {
     autoFocus: PropTypes.bool,
     className: PropTypes.string,
+    dayClasses: PropTypes.arrayOf(PropTypes.object),
     dateClasses: PropTypes.arrayOf(PropTypes.object),
     DayComponent: PropTypes.func,
     disabledDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
@@ -136,14 +137,14 @@ export default class Calendar extends Component {
     }
   }
   updateYears(props = this.props) {
-    console.log("this.props: ", this.props);
+    // console.log("this.props: ", this.props);
 
     this._min = new Date(Date.parse(props.min));
     this._max = new Date(Date.parse(props.max));
     this._minDate = new Date(Date.parse(props.minDate));
     this._maxDate = new Date(Date.parse(props.maxDate));
 
-    console.log("this._min: ", this._min);
+    // console.log("this._min: ", this._min);
 
     const min = this._min.getFullYear();
     const minMonth = this._min.getMonth();
@@ -169,7 +170,7 @@ export default class Calendar extends Component {
   }
   getDisabledDates(disabledDates) {
     return disabledDates && disabledDates.map((date) => {
-      console.log("date: ", date);
+      // console.log("date: ", date);
       return format(Date.parse(date), 'yyyy-MM-dd', new Date());
     });
   }
@@ -371,7 +372,7 @@ export default class Calendar extends Component {
               ref={instance => {
                 this._MonthList = instance;
               }}
-              dayClassObj={dayClasses}
+              dayClassObj={dayClassObj}
               dateClassObj={dateClassObj}
               DayComponent={DayComponent}
               disabledDates={disabledDates}

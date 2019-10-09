@@ -15,7 +15,7 @@
     "build:storybook": "build-storybook",
     "deploy": "gh-pages -d storybook-static",
     "lint": "eslint --fix src/**/*.js",
-    "start": "npm run storybook",
+    "start": "npm run storybook -s ./public",
     "storybook": "start-storybook -p 6006"
   },
   "dependencies": {

@@ -23,7 +23,7 @@ export default class Day extends PureComponent {
       selectionStyle
     } = this.props;
 
-    console.log("theme: ", theme)
+    // console.log("theme: ", theme)
 
     return (
       <div
@@ -60,7 +60,7 @@ export default class Day extends PureComponent {
       year
     } = this.props;
     const { selectionColor, todayColor } = theme;
-    console.log("theme: ", theme)
+    // console.log("theme: ", theme)
     let color;
 
     if (isSelected) {
@@ -72,7 +72,7 @@ export default class Day extends PureComponent {
       color = todayColor;
     }
 
-    console.log("className: ", className)
+    // console.log("className: ", className)
 
     let styling = classNames(
       styles.root,

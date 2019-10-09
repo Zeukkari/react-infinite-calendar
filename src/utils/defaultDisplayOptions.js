@@ -1,9 +1,9 @@
 module.exports = {
   hideYearsOnSelect: true,
-  layout: 'portrait',
+  layout: 'landscape',
   overscanMonthCount: 2,
   shouldHeaderAnimate: true,
-  showHeader: true,
+  showHeader: false,
   showMonthsForYears: true,
   showOverlay: true,
   showTodayHelper: true,

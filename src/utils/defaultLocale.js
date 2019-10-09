@@ -5,5 +5,5 @@ module.exports = {
     long: 'Today',
   },
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  weekStartsOn: 0,
+  weekStartsOn: 1,
 };
